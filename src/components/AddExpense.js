@@ -1,7 +1,7 @@
 import React from 'react'
 // Internal Components
 
-export default class BoilerplateApp extends React.Component {
+export default class AddExpense extends React.Component {
   state = {
     options: []
   }
@@ -11,16 +11,13 @@ export default class BoilerplateApp extends React.Component {
   }
 
   render() {
-    const title = 'Boilerplate App'
+    const title = 'Add Expense'
     return (
       <div>
-        <Header
-          title={title}
-        />
         <div className="container">
           <p>{title}</p>
         </div>
       </div>
     )
   }
-} // End of Boilerplate class definition
+} // End of AddExpense class definition
