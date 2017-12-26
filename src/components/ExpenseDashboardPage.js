@@ -1,23 +1,10 @@
 import React from 'react'
 // Internal Components
 
-export default class ExpenseDashboardPage extends React.Component {
-  state = {
-    options: []
-  }
+const ExpenseDashboardPage = () => (
+  <div>
+    <p>Expense Dashboard Page</p>
+  </div>
+)
 
-  handleState = () => {
-    this.setState(() => ({ options: [] }))
-  }
-
-  render() {
-    const title = 'Expense Dashboard Page'
-    return (
-      <div>
-        <div className="container">
-          <p>{title}</p>
-        </div>
-      </div>
-    )
-  }
-} // End of Expensify class definition
+export default ExpenseDashboardPage
