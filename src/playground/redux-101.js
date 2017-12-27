@@ -3,9 +3,9 @@ import { createStore } from 'redux'
 // Action generators
 
 /** Default the payload to an empty object to avoid `undefined` */
-const incrementCount = (payload = {}) => ({
+const incrementCount = ({ incrementBy = 1 } = {}) => ({
   type: 'INCREMENT',
-  incrementBy: typeof payload.incrementBy === 'number' ? payload.incrementBy : 1
+  incrementBy
 })
 
 /** Default the param to a value */
@@ -20,23 +20,31 @@ const decrementCount = ({ decrementBy = 1 } = {}) => ({
   decrementBy // when referenceing the same name, miss off the assignment
 })
 
+const resetCount = () => ({
+  type: 'RESET'
+})
+
+/** count value is mandatory, so no need to set a default */
+const setCount = ({ setCount }) => ({
+  type: 'SET',
+  setCount
+})
+
 /* Redux createStore requires a function as an argument which is called
-automatically on first use */
+automatically on first use - this is a "Reducer" */
 const store = createStore((state = { count: 0 }, action) => {
   switch (action.type) {
     case 'INCREMENT':
-      const incrementBy = typeof action.incrementBy === 'number' ? action.incrementBy : 1
       return {
-        count: state.count + incrementBy
+        count: state.count + action.incrementBy
       }
     case 'DECREMENT':
-      const decrementBy = typeof action.decrementBy === 'number' ? action.decrementBy : 1
       return {
-        count: state.count - decrementBy
+        count: state.count - action.decrementBy
       }
     case 'SET':
       return {
-        count: action.count
+        count: action.setCount
       }
     case 'RESET':
       return {
@@ -64,17 +72,24 @@ const unsubscribe = store.subscribe(() => {
 store.dispatch(incrementCount({incrementBy: 5}))
 store.dispatch(incrementCountAltWhenSingleParam(5))
 
-store.dispatch({
+/* store.dispatch({
   type: 'RESET'
 })
+ */
 
-store.dispatch({
+// store.dispatch(resetCount({ resetValue: 100}))
+store.dispatch(resetCount())
+
+/* store.dispatch({
   type: 'DECREMENT'
 })
-
+ */
+store.dispatch(decrementCount())
 store.dispatch(decrementCount({decrementBy: 10}))
 
-store.dispatch({
+/* store.dispatch({
   type: 'SET',
   count: 101
-})
+}) */
+
+store.dispatch(setCount({ setCount: 101 }))
