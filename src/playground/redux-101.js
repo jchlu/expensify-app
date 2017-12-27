@@ -30,9 +30,14 @@ const setCount = ({ setCount }) => ({
   setCount
 })
 
-/* Redux createStore requires a function as an argument which is called
-automatically on first use - this is a "Reducer" */
-const store = createStore((state = { count: 0 }, action) => {
+/**
+ * Reducers
+ * 1. Reducers are pure functions - not changing anything o/s the function
+ *    and not taking any input from anything other than that which is passed in.
+ * 2. Reducers never change state of action.
+ */
+
+const countReducer = (state = { count: 0 }, action) => {
   switch (action.type) {
     case 'INCREMENT':
       return {
@@ -53,7 +58,11 @@ const store = createStore((state = { count: 0 }, action) => {
     default:
       return state
   }
-})
+}
+
+/* Redux createStore requires a function as an argument which is called
+automatically on first use - this is a "Reducer" */
+const store = createStore(countReducer)
 
 /*
 * If unsubscribe is called, the return value stops the subscription,
