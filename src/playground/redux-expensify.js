@@ -22,7 +22,11 @@ const removeExpense = ({ id }) => ({
   id
 })
 // EDIT_EXPENSE
-// SET_TEXT_FILTER
+const editExpense = (id, updates) => ({
+  type: 'EDIT_EXPENSE',
+  id,
+  updates
+})// SET_TEXT_FILTER
 // SORT_BY_DATE
 // SORT_BY_AMOUNT
 // SET_START_DATE
@@ -45,6 +49,17 @@ const expensesReducer = (state = expensesReducerDefaultState, action) => {
     case 'REMOVE_EXPENSE':
       // Deconstruct the input array as we only need id, implicitly return boolean ~{}~
       return state.filter(({ id }) => id !== action.id)
+    case 'EDIT_EXPENSE':
+      return state.map((expense) => {
+        if (expense.id === action.id) {
+          return {
+            ...expense,
+            ...action.updates
+          }
+        } else {
+          return expense
+        }
+      })
     default:
       return state
   }
@@ -77,6 +92,7 @@ const expenseTwo = store.dispatch(addExpense({
 }))
 
 store.dispatch(removeExpense({id: expenseOne.expense.id}))
+store.dispatch(editExpense(expenseTwo.expense.id, { amount: 500 }))
 
 const demoState = {
   expenses: [{
