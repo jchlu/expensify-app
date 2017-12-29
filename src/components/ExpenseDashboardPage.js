@@ -1,10 +1,12 @@
 import React from 'react'
 import ExpenseList from './ExpenseList'
+import ExpenseListFilters from './expenseListFilters'
 // Internal Components
 
 const ExpenseDashboardPage = () => (
   <div>
-    <h1><ExpenseList /></h1>
+    <ExpenseListFilters />
+    <ExpenseList />
   </div>
 )
 
