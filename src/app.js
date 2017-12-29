@@ -20,8 +20,8 @@ store.subscribe(() => {
   console.log(visibleExpenses)
 })
  */
-store.dispatch(addExpense({ description: 'Water Bill' }))
-store.dispatch(addExpense({ description: 'Gas Bill' }))
+store.dispatch(addExpense({ description: 'Water Bill', amount: 100, createdAt: 1000 }))
+store.dispatch(addExpense({ description: 'Gas Bill', amount: 300, createdAt: 21000 }))
 
 store.dispatch(setTextFilter('water'))
 
