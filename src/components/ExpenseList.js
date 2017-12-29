@@ -1,11 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import ExpenseListItem from './ExpenseListItem'
+import sortedAndFilteredExpenses from '../selectors/expenses'
 
 const ExpenseList = (props) => (
   <div>
     <h1>Expense List</h1>
-    <p>{props.filters.text}</p>
     {props.expenses.map((expense) => {
       return (
         <ExpenseListItem key={expense.id} {...expense}/>
@@ -17,8 +17,7 @@ const ExpenseList = (props) => (
 /** What we want from the store to be passed as props */
 const mapStateToProps = (state) => {
   return {
-    expenses: state.expenses,
-    filters: state.filters
+    expenses: sortedAndFilteredExpenses(state.expenses, state.filters)
   }
 }
 
