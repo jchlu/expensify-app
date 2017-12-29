@@ -26,7 +26,8 @@ const editExpense = (id, updates) => ({
   type: 'EDIT_EXPENSE',
   id,
   updates
-})// SET_TEXT_FILTER
+})
+// SET_TEXT_FILTER
 const setTextFilter = (text = '') => ({
   type: 'SET_TEXT_FILTER',
   text
@@ -50,12 +51,6 @@ const setEndDate = (endDate) => ({
   endDate
 })
 const expensesReducerDefaultState = []
-const filtersReducerDefaultState = {
-  'text': '',
-  'sortBy': 'date',
-  'startDate': undefined,
-  'endDate': undefined
-}
 
 const expensesReducer = (state = expensesReducerDefaultState, action) => {
   switch (action.type) {
@@ -80,6 +75,13 @@ const expensesReducer = (state = expensesReducerDefaultState, action) => {
     default:
       return state
   }
+}
+
+const filtersReducerDefaultState = {
+  'text': '',
+  'sortBy': 'date',
+  'startDate': undefined,
+  'endDate': undefined
 }
 
 const filtersReducer = (state = filtersReducerDefaultState, action) => {
@@ -125,8 +127,7 @@ const getVisibleExpenses = (expenses, { text, sortBy, startDate, endDate }) => {
   }).sort((a, b) => {
     if (sortBy === 'date') {
       return a.createdAt < b.createdAt ? 1 : -1
-    }
-    if (sortBy === 'amount') {
+    } else if (sortBy === 'amount') {
       return a.amount < b.amount ? 1 : -1
     }
   })
