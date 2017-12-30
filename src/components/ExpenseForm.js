@@ -8,8 +8,6 @@ import ErrorModal from './ErrorModal'
 
 export default class ExpenseForm extends React.Component {
 constructor(props)  {
-  moment.locale('en-gb') // Format the dates for 'react-dates'
-  console.log(props)
   super(props)
   this.state = {
     description: props.expense ? props.expense.description : '',

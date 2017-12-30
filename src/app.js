@@ -6,6 +6,7 @@ import configureStore from './store/configureStore'
 import { addExpense } from './actions/expenses'
 import { setTextFilter } from './actions/filters'
 import getVisibleExpenses from './selectors/expenses'
+import moment from 'moment'
 import 'normalize.css/normalize.css'
 import './styles/style.scss'
 import 'react-dates/initialize'
@@ -39,9 +40,12 @@ const visibleExpenses = getVisibleExpenses(
 )
 console.log(visibleExpenses)
 
-const jsx = (
-  <Provider store={store}>
-    <AppRouter />
-  </Provider>
-)
-ReactDOM.render(jsx, document.getElementById('app'))
+const bootstrapExpensesApp = () => {
+  moment.locale('en-gb') // Format the dates for 'react-dates'
+  return (
+    <Provider store={store}>
+      <AppRouter />
+    </Provider>
+  )
+}
+ReactDOM.render(bootstrapExpensesApp(), document.getElementById('app'))
