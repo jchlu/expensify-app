@@ -1,6 +1,7 @@
 import React from 'react'
 import moment from 'moment'
 import { SingleDatePicker } from 'react-dates'
+import ErrorModal from './ErrorModal'
 
 // const now = moment()
 // console.log(now.format('MMM Do, YYYY'))
@@ -11,7 +12,9 @@ export default class ExpenseForm extends React.Component {
     note: '',
     amount: 0,
     createdAt: moment(),
-    calendarFocused: false
+    calendarFocused: false,
+    error: '',
+    showError: false
   }
 
   onDescriptionChange = (e) => {
@@ -41,10 +44,35 @@ export default class ExpenseForm extends React.Component {
       this.setState(() => ({ calendarFocused: focused }))
   }
 
+  onSubmit = (e) => {
+    e.preventDefault()
+    if (!this.state.description || !this.state.amount) {
+      this.setState(() => {
+        return {
+          error: "Please provide: description & amount.",
+          showError: true
+        }
+      })
+    } else {
+      // clear the error
+      this.setState(() => { error: '' })
+      console.log('submitted!')
+    }
+  }
+
+  handleClearShowError = () => {
+    this.setState(() => { 
+      return {
+        showError: false
+      } 
+    })
+    console.log(`Show error state: ${this.state.showError}`)
+  }
+
   render () {
     return (
       <div>
-        <form action="">
+      <form onSubmit={this.onSubmit}>
           <input
             type="text"
             placeholder="Description"
@@ -67,16 +95,17 @@ export default class ExpenseForm extends React.Component {
             isOutsideRange={() => false}
           />
           <textarea
-            name=""
-            id=""
-            // cols="30"
-            // rows="10"
             placeholder="Add a note for your expense (optional)"
             value={this.state.note}
             onChange={this.onNoteChange}
           ></textarea>
           <button>Add Expense</button>
         </form>
+        <ErrorModal
+        errorMessage={this.state.error}
+        showError={this.state.showError}
+        handleClearShowError={this.handleClearShowError}
+      />
       </div>
     )
   }
