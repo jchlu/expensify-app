@@ -12,6 +12,7 @@ import './styles/style.scss'
 import 'react-dates/initialize'
 import 'react-dates/lib/css/_datepicker.css'
 import './firebase/firebase'
+import './playground/promises.js'
 
 const store = configureStore()
 /*
@@ -39,7 +40,7 @@ const visibleExpenses = getVisibleExpenses(
   state.expenses,
   state.filters
 )
-console.log(visibleExpenses)
+// console.log(visibleExpenses)
 
 const bootstrapExpensesApp = () => {
   moment.locale('en-gb') // Format the dates for 'react-dates'
