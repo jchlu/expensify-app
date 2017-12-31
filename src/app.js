@@ -12,7 +12,7 @@ import './styles/style.scss'
 import 'react-dates/initialize'
 import 'react-dates/lib/css/_datepicker.css'
 import './firebase/firebase'
-import './playground/promises.js'
+// import './playground/promises.js'
 
 const store = configureStore()
 /*

@@ -7,3 +7,5 @@ node_modules/
 public/scripts/*
 yarn-error.log
 public/bundle.js
+settings.js
+firebase/bsaFirebase.js
