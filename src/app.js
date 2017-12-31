@@ -11,6 +11,7 @@ import 'normalize.css/normalize.css'
 import './styles/style.scss'
 import 'react-dates/initialize'
 import 'react-dates/lib/css/_datepicker.css'
+import './firebase/firebase'
 
 const store = configureStore()
 /*
