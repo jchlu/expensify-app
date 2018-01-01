@@ -13,7 +13,7 @@ const expenses = [
   },
   {
     description: 'Description 2',
-    note: 'Note 1',
+    note: 'Note 2',
     amount: 1050,
     createdAt: 12010
   },
@@ -34,16 +34,21 @@ const expenses = [
  */
 
 database.ref('expenses')
-  .on('value', (snapshot) => {
-    const expenses = []
-    snapshot.forEach((childSnapshot) => {
-      expenses.push({
-        id: childSnapshot.key,
-        ...childSnapshot.val()
-      })
-    })
-    console.log(expenses)
+  .on('child_removed', (snapshot) => {
+    console.log(snapshot.key, snapshot.val())
   })
+
+// database.ref('expenses')
+//   .on('value', (snapshot) => {
+//     const expenses = []
+//     snapshot.forEach((childSnapshot) => {
+//       expenses.push({
+//         id: childSnapshot.key,
+//         ...childSnapshot.val()
+//       })
+//     })
+//     console.log(expenses)
+//   })
 
 /*
 database.ref('expenses')
