@@ -33,11 +33,25 @@ const expenses = [
 })
  */
 
+// Returns a snapshot of the *new* changed data
+database.ref('expenses')
+  .on('child_changed', (snapshot, previousSiblingKey) => {
+    console.log(snapshot.key, snapshot.val(), previousSiblingKey)
+  })
+
+// Returns a snapshot of the existing data first, then runs on any
+// subsequent change.
+database.ref('expenses')
+  .on('child_added', (snapshot, previousSiblingKey) => {
+    console.log(snapshot.key, snapshot.val(), previousSiblingKey)
+  })
+
+/*
 database.ref('expenses')
   .on('child_removed', (snapshot) => {
     console.log(snapshot.key, snapshot.val())
   })
-
+ */
 // database.ref('expenses')
 //   .on('value', (snapshot) => {
 //     const expenses = []
