@@ -25,12 +25,26 @@ const expenses = [
   }
 ]
 
-expenses.map((expense) => {
+/* expenses.map((expense) => {
   database.ref('expenses')
     .push(expense)
     .then(() => { console.log('Pushed new Expense') })
     .catch((error) => { console.log('You done messed up', error) })
 })
+ */
+
+database.ref('expenses')
+  .once('value')
+  .then((snapshot) => {
+    const expenses = []
+    snapshot.forEach((childSnapshot) => {
+      expenses.push({
+        id: childSnapshot.key,
+        ...childSnapshot.val()
+      })
+    })
+    console.log(expenses)
+  })
 
 // Get the data once versus subscribing
 /* database.ref('users/1')
