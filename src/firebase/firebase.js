@@ -4,6 +4,34 @@ import { expensifyConfig as config } from '../../settings'
 firebase.initializeApp(config)
 const database = firebase.database()
 
+const expenses = [
+  {
+    description: 'Description 1',
+    note: 'Note 1',
+    amount: 1000,
+    createdAt: 12000
+  },
+  {
+    description: 'Description 2',
+    note: 'Note 1',
+    amount: 1050,
+    createdAt: 12010
+  },
+  {
+    description: 'Description 3',
+    note: 'Note 1',
+    amount: 1234,
+    createdAt: 120456
+  }
+]
+
+expenses.map((expense) => {
+  database.ref('expenses')
+    .push(expense)
+    .then(() => { console.log('Pushed new Expense') })
+    .catch((error) => { console.log('You done messed up', error) })
+})
+
 // Get the data once versus subscribing
 /* database.ref('users/1')
   .once('value')
@@ -15,13 +43,14 @@ const database = firebase.database()
     console.log('Error fetching data' , error)
   })
    */
-database.ref('users/2/stressLevel').set(5)
+// database.ref('users/2/stressLevel').set(5)
 
 /* database.ref('users/1')
   .on('value', (snapshot) => {
     console.log(snapshot.val())
   })
  */
+/*
 const onUser2Change = database.ref('users/2')
   .on('value', (snapshot) => {
     console.log(snapshot.val())
@@ -32,19 +61,19 @@ const onUser2Change = database.ref('users/2')
 setTimeout(() => {
   database.ref('users/2/stressLevel').set(2)
 }, 3500)
-
+ */
 /**
  * Off reference docs:
  *  https://firebase.google.com/docs/reference/js/firebase.database.Reference?authuser=1#off
  */
-setTimeout(() => {
+/* setTimeout(() => {
   database.ref('users/2').off('value', onUser2Change)
 }, 7000)
 
 setTimeout(() => {
   database.ref('users/2/stressLevel').set(0)
 }, 10500)
-
+ */
 // ref is root of the firebase db
 /*
 database.ref('users/2').update({
