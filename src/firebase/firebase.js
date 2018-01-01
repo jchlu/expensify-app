@@ -34,6 +34,19 @@ const expenses = [
  */
 
 database.ref('expenses')
+  .on('value', (snapshot) => {
+    const expenses = []
+    snapshot.forEach((childSnapshot) => {
+      expenses.push({
+        id: childSnapshot.key,
+        ...childSnapshot.val()
+      })
+    })
+    console.log(expenses)
+  })
+
+/*
+database.ref('expenses')
   .once('value')
   .then((snapshot) => {
     const expenses = []
@@ -44,7 +57,7 @@ database.ref('expenses')
       })
     })
     console.log(expenses)
-  })
+  }) */
 
 // Get the data once versus subscribing
 /* database.ref('users/1')
