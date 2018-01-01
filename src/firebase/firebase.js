@@ -4,6 +4,8 @@ import { expensifyConfig as config } from '../../settings'
 firebase.initializeApp(config)
 const database = firebase.database()
 
+export { firebase, database as default }
+/*
 const expenses = [
   {
     description: 'Description 1',
@@ -23,7 +25,7 @@ const expenses = [
     amount: 1234,
     createdAt: 120456
   }
-]
+] */
 
 /* expenses.map((expense) => {
   database.ref('expenses')
@@ -34,7 +36,7 @@ const expenses = [
  */
 
 // Returns a snapshot of the *new* changed data
-database.ref('expenses')
+/* database.ref('expenses')
   .on('child_changed', (snapshot, previousSiblingKey) => {
     console.log(snapshot.key, snapshot.val(), previousSiblingKey)
   })
@@ -45,7 +47,7 @@ database.ref('expenses')
   .on('child_added', (snapshot, previousSiblingKey) => {
     console.log(snapshot.key, snapshot.val(), previousSiblingKey)
   })
-
+ */
 /*
 database.ref('expenses')
   .on('child_removed', (snapshot) => {
