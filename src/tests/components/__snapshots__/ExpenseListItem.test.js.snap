@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render item with expense fixtures 1`] = `
+<div>
+  <p>
+    Gum
+  </p>
+  <p>
+    150
+     - 
+    0
+  </p>
+  <Link
+    replace={false}
+    to="/edit/1"
+  >
+    <button>
+      Edit
+    </button>
+  </Link>
+</div>
+`;
