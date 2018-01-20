@@ -71,3 +71,34 @@ test('Should not set amount if invalid input and existing data', () => {
   })
   expect(wrapper.state('amount')).toBe(expected)
 })
+
+// Test Spies
+
+test('Should call onSubmit prop for valid form submission', () => {
+  const onSubmitSpy = jest.fn()
+  /*
+  * The Spy assertions are found in the Jest Expects documentation.
+  onSumbitSpy()
+  expect(onSumbitSpy).toHaveBeenCalled()
+  onSumbitSpy('Sausages', 'Beans')
+  expect(onSumbitSpy).toHaveBeenCalledWith('Sausages', 'Beans')
+  */
+  const wrapper = shallow(
+    <ExpenseForm
+      expense={expenses[0]}
+      onSubmit={onSubmitSpy}
+    />
+  )
+  wrapper.find('form').simulate('submit', {
+    preventDefault: () => { }
+  })
+  // The error state should now be empty
+  expect(wrapper.state('error')).toBe('')
+  // and the props set to the details of the expense
+  expect(onSubmitSpy).toHaveBeenLastCalledWith({
+    description: expenses[0].description,
+    amount: expenses[0].amount,
+    createdAt: expenses[0].createdAt,
+    note: expenses[0].note
+  })
+})
