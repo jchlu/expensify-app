@@ -4,15 +4,15 @@ import { AddExpense } from '../../components/AddExpense'
 import ExpenseForm from '../../components/ExpenseForm'
 import expenses from '../fixtures/expenses'
 
-let onSubmitSpy, historySpy, wrapper
+let addExpenseSpy, historySpy, wrapper
 
 // https://facebook.github.io/jest/docs/en/api.html#beforeeachfn-timeout
 beforeEach(() => {
-  onSubmitSpy = jest.fn()
+  addExpenseSpy = jest.fn()
   historySpy = { push: jest.fn() }
   wrapper = shallow(
     <AddExpense
-      onSubmit={onSubmitSpy}
+      addExpense={addExpenseSpy}
       history={historySpy}
     />
   )
@@ -24,5 +24,5 @@ test('Should render add expense page correctly', () => {
 test('Should handle onSubmit', () => {
   wrapper.find(ExpenseForm).prop('onSubmit')(expenses[1])
   expect(historySpy.push).toHaveBeenLastCalledWith('/')
-  expect(onSubmitSpy).toHaveBeenLastCalledWith(expenses[1])
+  expect(addExpenseSpy).toHaveBeenLastCalledWith(expenses[1])
 })
