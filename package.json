@@ -52,6 +52,8 @@
     "build:prod": "webpack -p --env production",
     "serve": "webpack-dev-server",
     "test": "jest --config=jest.config.json",
-    "testwatch": "jest --config=jest.config.json --watch"
+    "testwatch": "jest --config=jest.config.json --watch",
+    "start": "node ./server/server.js",
+    "heroku-postbuild": "yarn run build:prod"
   }
 }
