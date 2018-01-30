@@ -46,7 +46,8 @@
     "eslint-plugin-standard": "^3.0.1"
   },
   "scripts": {
-    "build": "webpack",
+    "build:dev": "webpack",
+    "build:prod": "webpack -p --env production",
     "serve": "webpack-dev-server",
     "test": "jest --config=jest.config.json",
     "testwatch": "jest --config=jest.config.json --watch"
