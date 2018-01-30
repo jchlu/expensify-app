@@ -85,6 +85,7 @@ test('Should handle date changes', () => {
 // Assert state change by simulating change
 // event simulate provide (e) as in text changes
 test('Should handle date focus changes', () => {
-  const calendarFocused = true
-  wrapper.find(DateRangePicker).prop('onFocusChange')({ calendarFocused })
+  const calendarFocused = 'startDate'
+  wrapper.find(DateRangePicker).prop('onFocusChange')(calendarFocused)
+  expect(wrapper.state('calendarFocused')).toBe(calendarFocused)
 })
