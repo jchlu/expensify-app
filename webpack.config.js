@@ -1,13 +1,11 @@
 const path = require('path')
-
+// https://www.npmjs.com/package/extract-text-webpack-plugin
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 module.exports = (env) => {
   const isProduction = env === 'production'
+  const CSSExtract = new ExtractTextPlugin('styles.css')
   return {
     entry: './src/app.js',
-    // entry: './src/playground/hoc.js',
-    // entry: './src/playground/redux-expensify.js',
-    // entry: './src/playground/redux-101.js',
-    // entry: './src/playground/destructuring.js',
     output: {
       path: path.join(__dirname, 'public'),
       filename: 'bundle.js'
@@ -20,14 +18,28 @@ module.exports = (env) => {
       },
       {
         test: /\.s?css$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader'
-        ]
+        use: CSSExtract.extract({
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: true
+              }
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true
+              }
+            }
+          ]
+        })
       }]
     },
-    devtool: isProduction ? 'source-map' : 'cheap-module-eval-source-map',
+    plugins: [
+      CSSExtract
+    ],
+    devtool: isProduction ? 'source-map' : 'inline-source-map',
     devServer: {
       // https://webpack.js.org/configuration/dev-server/#devserver
       contentBase: path.join(__dirname, 'public'),
