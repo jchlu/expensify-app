@@ -6,7 +6,7 @@
   "author": "Johnny Choudhury-Lucas <jchlu+git@me.com>",
   "license": "MIT",
   "engines": {
-    "node": "9.3.x"
+    "node": "9.x"
   },
   "dependencies": {
     "babel-cli": "^6.26.0",
