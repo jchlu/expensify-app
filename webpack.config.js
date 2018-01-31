@@ -7,7 +7,7 @@ module.exports = (env) => {
   return {
     entry: './src/app.js',
     output: {
-      path: path.join(__dirname, 'public'),
+      path: path.join(__dirname, 'public', 'dist'),
       filename: 'bundle.js'
     },
     module: {
@@ -43,7 +43,8 @@ module.exports = (env) => {
     devServer: {
       // https://webpack.js.org/configuration/dev-server/#devserver
       contentBase: path.join(__dirname, 'public'),
-      historyApiFallback: true // This is fine for dev, not for prod
+      historyApiFallback: true, // This is fine for dev, not for prod
+      publicPath: '/dist/'
     }
   }
 }

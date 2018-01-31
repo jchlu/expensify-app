@@ -4,11 +4,7 @@ node_modules/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-public/scripts/*
-yarn-error.log
-public/bundle.js
-public/bundle.js.map
-public/styles.css
-public/styles.css.map
+public/dist/
 settings.js
 src/firebase/bsaFirebase.js
+yarn-error.log
