@@ -6,9 +6,9 @@ exports[`Should render item with expense fixtures 1`] = `
     Gum
   </p>
   <p>
-    150
-     - 
-    0
+    $1.50
+     - 
+    January 1st, 1970
   </p>
   <Link
     replace={false}
