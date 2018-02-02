@@ -1,9 +1,3 @@
-node_modules/
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
 public/dist/
 settings.js
 src/firebase/bsaFirebase.js
