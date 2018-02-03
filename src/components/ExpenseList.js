@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import ExpenseListItem from './ExpenseListItem'
 import sortedAndFilteredExpenses from '../selectors/expenses'
-
+import PropTypes from 'prop-types'
 export const ExpenseList = (props) => (
   <div>
     {props.expenses.length === 0
@@ -15,6 +15,10 @@ export const ExpenseList = (props) => (
     }
   </div>
 )
+
+ExpenseList.propTypes = {
+  expenses: PropTypes.array
+}
 
 /** What we want from the store to be passed as props */
 const mapStateToProps = (state) => {
