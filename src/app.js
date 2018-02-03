@@ -23,10 +23,10 @@ store.subscribe(() => {
   console.log(visibleExpenses)
 })
  */
-store.dispatch(addExpense({ description: 'Water Bill', amount: 4500, createdAt: 1000 }))
+/* store.dispatch(addExpense({ description: 'Water Bill', amount: 4500, createdAt: 1000 }))
 store.dispatch(addExpense({ description: 'Gas Bill', amount: 300, createdAt: 21000 }))
 store.dispatch(addExpense({ description: 'Rent', amount: 109500, createdAt: 1000 }))
-
+ */
 // store.dispatch(setTextFilter('water'))
 
 /* setTimeout(() => {
@@ -38,7 +38,6 @@ const visibleExpenses = getVisibleExpenses(
   state.expenses,
   state.filters
 )
-console.log(visibleExpenses)
 
 const bootstrapExpensesApp = () => {
   moment.locale('en-gb') // Format the dates for 'react-dates'
