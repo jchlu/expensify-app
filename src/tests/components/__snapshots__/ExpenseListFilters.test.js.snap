@@ -47,6 +47,7 @@ exports[`Should render Expense List Filters correctly 1`] = `
     isDayHighlighted={[Function]}
     isOutsideRange={[Function]}
     isRTL={false}
+    keepFocusOnInput={false}
     keepOpenOnDateSelect={false}
     minimumNights={1}
     monthFormat="MMMM YYYY"
@@ -68,6 +69,7 @@ exports[`Should render Expense List Filters correctly 1`] = `
         "chooseAvailableStartDate": [Function],
         "clearDates": "Clear Dates",
         "closeDatePicker": "Close",
+        "dateIsSelected": [Function],
         "dateIsUnavailable": [Function],
         "enterKey": "Enter key",
         "escape": "Escape key",
@@ -94,6 +96,7 @@ exports[`Should render Expense List Filters correctly 1`] = `
       }
     }
     readOnly={false}
+    regular={false}
     renderCalendarInfo={null}
     renderDayContents={null}
     renderMonth={null}
@@ -162,6 +165,7 @@ exports[`Should render Expense List Filters correctly 2`] = `
     isDayHighlighted={[Function]}
     isOutsideRange={[Function]}
     isRTL={false}
+    keepFocusOnInput={false}
     keepOpenOnDateSelect={false}
     minimumNights={1}
     monthFormat="MMMM YYYY"
@@ -183,6 +187,7 @@ exports[`Should render Expense List Filters correctly 2`] = `
         "chooseAvailableStartDate": [Function],
         "clearDates": "Clear Dates",
         "closeDatePicker": "Close",
+        "dateIsSelected": [Function],
         "dateIsUnavailable": [Function],
         "enterKey": "Enter key",
         "escape": "Escape key",
@@ -209,6 +214,7 @@ exports[`Should render Expense List Filters correctly 2`] = `
       }
     }
     readOnly={false}
+    regular={false}
     renderCalendarInfo={null}
     renderDayContents={null}
     renderMonth={null}
