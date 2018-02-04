@@ -1,11 +1,5 @@
-node_modules/
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-public/scripts/*
-yarn-error.log
-public/bundle.js
+public/dist/
 settings.js
 src/firebase/bsaFirebase.js
+yarn-error.log
+public/bundle.js

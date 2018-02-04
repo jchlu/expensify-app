@@ -5,6 +5,9 @@
   "repository": "git@github.com:jchlu/expensify-app.git",
   "author": "Johnny Choudhury-Lucas <jchlu+git@me.com>",
   "license": "MIT",
+  "engines": {
+    "node": "9.x"
+  },
   "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
@@ -15,10 +18,15 @@
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.7",
     "eslint": "^4.11.0",
+    "express": "^4.16.2",
+    "extract-text-webpack-plugin": "^3.0.2",
     "firebase": "^4.8.1",
     "moment": "^2.20.1",
     "node-sass": "^4.7.2",
     "normalize.css": "^7.0.0",
+    "numeral": "^2.0.6",
+    "prop-types": "^15.6.0",
+    "raf": "^3.4.0",
     "react": "^16.2.0",
     "react-dates": "^16.0.1",
     "react-dom": "^16.2.0",
@@ -30,19 +38,29 @@
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.1",
     "uuid": "^3.1.0",
-    "validator": "^9.1.2",
-    "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.9.7"
+    "validator": "^9.1.2"
   },
   "devDependencies": {
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-node": "^5.2.1",
     "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-standard": "^3.0.1"
+    "eslint-plugin-standard": "^3.0.1",
+    "jest": "^22.0.4",
+    "react-test-renderer": "^16.2.0",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.7"
   },
   "scripts": {
-    "build": "webpack",
-    "serve": "webpack-dev-server"
+    "build:dev": "webpack",
+    "build:prod": "webpack -p --env production",
+    "serve": "webpack-dev-server",
+    "test": "jest --config=jest.config.json",
+    "testwatch": "jest --config=jest.config.json --watch",
+    "start": "node ./server/server.js",
+    "heroku-postbuild": "yarn run build:prod"
   }
 }
