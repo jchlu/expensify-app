@@ -5,15 +5,14 @@ import getVisibleExpenses from '../selectors/expenses'
 import summedExpenses from '../selectors/expenses-total'
 import numeral from 'numeral'
 
-const ExpenseSummary = (props) => {
-  const count = props.expenses.length
+// Destructure the props as we only need a count and total
+export const ExpenseSummary = ({count, total}) => {
   return (
     <div>
-      {
-        count > 0 &&
+      { count > 0 &&
         <p>
           Viewing {count} Expense{count > 1 && 's'} Totalling {
-            numeral(props.expensesTotal / 100).format('$0,0.00')
+            numeral(total / 100).format('$0,0.00')
           }
         </p>
       }
@@ -27,11 +26,10 @@ ExpenseSummary.propTypes = {
 
 /** What we want from the store to be passed as props */
 const mapStateToProps = (state) => {
+  const visibleExpenses = getVisibleExpenses(state.expenses, state.filters)
   return {
-    expenses: getVisibleExpenses(state.expenses, state.filters),
-    expensesTotal: summedExpenses(
-      getVisibleExpenses(state.expenses, state.filters)
-    )
+    count: visibleExpenses.length,
+    total: summedExpenses(visibleExpenses)
   }
 }
 

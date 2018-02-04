@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render summary with a single fixture 1`] = `
+<div>
+  <p>
+    Viewing 
+    1
+     Expense
+     Totalling 
+    $12.34
+  </p>
+</div>
+`;
+
+exports[`Should render summary with two fixtures 1`] = `
+<div>
+  <p>
+    Viewing 
+    2
+     Expense
+    s
+     Totalling 
+    $123.45
+  </p>
+</div>
+`;
