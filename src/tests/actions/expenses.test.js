@@ -1,4 +1,9 @@
-import { addExpense, editExpense, removeExpense } from '../../actions/expenses'
+import configureStore from 'redux-mock-store'
+import thunk from 'redux-thunk'
+import { startAddExpense, addExpense, editExpense, removeExpense } from '../../actions/expenses'
+import expenses from '../fixtures/expenses'
+
+const createMockStore = configureStore([thunk])
 
 test('Should setup removeExpense action object', () => {
   const action = removeExpense({ id: '123abc' })
@@ -56,5 +61,20 @@ test('Should setup addExpense action object with default values', () => {
   }
   const action = addExpense()
   expect(action).toEqual(expected)
+})
 
+// Wait for asyncronous promises to complete by passing and calling done function
+test('Should add expense to database and mock store', (done) => {
+  const store = createMockStore({})
+  const expenseData = {
+    description: 'Mouse',
+    amount: 3000,
+    note: 'Upgrade',
+    createdAt: 1000
+  }
+  store.dispatch(startAddExpense(expenseData))
+  done()
+})
+test('Should add expense with defaults to database and mock store', () => {
+  const store = createMockStore({})
 })
