@@ -68,6 +68,29 @@ test('Should add expense to database and mock store', (done) => {
     done()
   })
 })
-test('Should add expense with defaults to database and mock store', () => {
+
+test('Should add expense with defaults to database and mock store', (done) => {
   const store = createMockStore({})
+  const defaults = {
+    description: '',
+    note: '',
+    amount: 0,
+    createdAt: 0
+  }
+  store.dispatch(startAddExpense({})).then(() => {
+    const actions = store.getActions()
+    expect(actions[0]).toEqual({
+      type: 'ADD_EXPENSE',
+      expense: {
+        id: expect.any(String),
+        ...defaults
+      }
+    })
+    // Check the actual firebase db for the persisted defaults
+    // Use promise chaining to improve readability
+    return database.ref(`expenses/${actions[0].expense.id}`).once('value')
+  }).then((snapshot) => {
+    expect(snapshot.val()).toEqual(defaults)
+    done()
+  })
 })
