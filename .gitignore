@@ -2,3 +2,4 @@ public/dist/
 settings.js
 src/firebase/bsaFirebase.js
 yarn-error.log
+public/bundle.js
