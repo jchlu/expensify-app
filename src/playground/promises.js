@@ -14,9 +14,15 @@ console.log('before')
 
 promise.then((data) => {
   console.log('1', data)
-  return data.city
-}).then((city) => {
-  console.log('does this run? ', city)
+  // return data.city // This could return another Promise as its' success
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('This is another chained promise')
+      reject(new Error('Something went wrong'))
+    }, 3000)
+  })
+}).then((str) => {
+  console.log('does this run? ', str)
 }).catch((error) => {
   console.log('error: ', error)
 })
