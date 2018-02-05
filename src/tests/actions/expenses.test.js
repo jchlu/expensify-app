@@ -30,40 +30,18 @@ test('Should setup editExpense action object', () => {
 })
 
 test('Should setup addExpense action object with passed values', () => {
-  const expenseData = {
-    description: 'Rent',
-    amount: 109500,
-    note: 'Rent Payment',
-    createdAt: 52345345
-  }
   const expected = {
     type: 'ADD_EXPENSE',
-    expense: {
-      ...expenseData,
-      id: expect.any(String)
-    }
+    expense: expenses[2]
   }
-  const action = addExpense(expenseData)
+  const action = addExpense(expenses[2])
   expect(action).toEqual(expected)
 })
 
-test('Should setup addExpense action object with default values', () => {
-  const expected = {
-    type: 'ADD_EXPENSE',
-    expense:
-      {
-        description: '',
-        note: '',
-        amount: 0,
-        createdAt: 0,
-        id: expect.any(String)
-      }
-  }
-  const action = addExpense()
-  expect(action).toEqual(expected)
-})
-
-// Wait for asyncronous promises to complete by passing and calling done function
+/** Wait for asyncronous promises to complete by passing and calling done function
+* using https://github.com/arnaudbenard/redux-mock-store
+* with its' ability to check for dispatched actions etc.
+*/
 test('Should add expense to database and mock store', (done) => {
   const store = createMockStore({})
   const expenseData = {
@@ -72,8 +50,17 @@ test('Should add expense to database and mock store', (done) => {
     note: 'Upgrade',
     createdAt: 1000
   }
-  store.dispatch(startAddExpense(expenseData))
-  done()
+  store.dispatch(startAddExpense(expenseData)).then(() => {
+    const actions = store.getActions()
+    expect(actions[0]).toEqual({
+      type: 'ADD_EXPENSE',
+      expense: {
+        id: expect.any(String),
+        ...expenseData
+      }
+    })
+    done()
+  })
 })
 test('Should add expense with defaults to database and mock store', () => {
   const store = createMockStore({})

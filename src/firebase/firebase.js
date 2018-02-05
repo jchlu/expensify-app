@@ -204,4 +204,4 @@ database.ref('users/1').update({
 // database.ref('users/1/isSingle').set(false).then(() => {}).catch((error) => {
 //   console.log('Could write that change', error)
 // })
-console.log('I made a request to change the data')
+// console.log('I made a request to change the data')
