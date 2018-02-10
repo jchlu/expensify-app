@@ -36,3 +36,16 @@ export const editExpense = (id, updates) => ({
   id,
   updates
 })
+
+// SET_EXPENSES
+export const setExpenses = (expenses) => ({
+  type: 'SET_EXPENSES',
+  expenses
+})
+
+export const startSetExpenses = () => ({
+  // Fetch all expenses data once from firebase
+  // Parse the data into an array (as per firebase.js testing)
+  // Dispatch SET_EXPENSES as per function further up this file.
+  // return true
+})
