@@ -67,10 +67,7 @@ test('Should edit expense in firebase', (done) => {
   store.dispatch(startEditExpense(id, { description })).then(() => {
     return database.ref(`expenses/${id}`).once('value')
       .then((snapshot) => {
-        expect(snapshot.val()).toEqual({
-          ...expenses[1],
-          description
-        })
+        expect(snapshot.val().description).toBe(description)
         done()
       })
     // const val = database.ref(reference).once('value')
