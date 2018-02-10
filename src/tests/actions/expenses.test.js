@@ -1,10 +1,18 @@
-import configureStore from 'redux-mock-store'
+import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { startAddExpense, addExpense, editExpense, removeExpense } from '../../actions/expenses'
 import expenses from '../fixtures/expenses'
 import database from '../../firebase/firebase'
 
-const createMockStore = configureStore([thunk])
+const createMockStore = configureMockStore([thunk])
+
+beforeEach((done) => {
+  const expenseData = {}
+  expenses.forEach(({ id, description, amount, note, createdAt }) => {
+    expenseData[id] = { description, amount, note, createdAt }
+    database.ref('expenses').set(expenseData).then(() => done())
+  })
+})
 
 test('Should setup removeExpense action object', () => {
   const action = removeExpense({ id: '123abc' })
