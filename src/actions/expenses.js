@@ -43,9 +43,25 @@ export const setExpenses = (expenses) => ({
   expenses
 })
 
-export const startSetExpenses = () => ({
+export const startSetExpenses = () => {
+  return (dispatch) => {
   // Fetch all expenses data once from firebase
-  // Parse the data into an array (as per firebase.js testing)
-  // Dispatch SET_EXPENSES as per function further up this file.
-  // return true
-})
+    return database.ref('expenses')
+      .once('value')
+      .then((snapshot) => {
+      // Parse the data into an array (as per firebase.js testing)
+        const expenses = []
+        snapshot.forEach((childSnapshot) => {
+          expenses.push({
+            id: childSnapshot.key,
+            ...childSnapshot.val()
+          })
+        })
+        // Dispatch SET_EXPENSES with firebase array
+        dispatch(setExpenses(expenses))
+      })
+      .catch((error) => {
+        console.log('Error fetching data', error)
+      })
+  }
+}
