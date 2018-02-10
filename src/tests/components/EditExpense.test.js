@@ -4,17 +4,17 @@ import { EditExpense } from '../../components/EditExpense'
 import ExpenseForm from '../../components/ExpenseForm'
 import expenses from '../fixtures/expenses'
 
-let editExpenseSpy, removeExpenseSpy, historySpy, wrapper
+let editExpenseSpy, startRemoveExpenseSpy, historySpy, wrapper
 
 // https://facebook.github.io/jest/docs/en/api.html#beforeeachfn-timeout
 beforeEach(() => {
   editExpenseSpy = jest.fn()
-  removeExpenseSpy = jest.fn()
+  startRemoveExpenseSpy = jest.fn()
   historySpy = { push: jest.fn() }
   wrapper = shallow(
     <EditExpense
       editExpense={editExpenseSpy}
-      removeExpense={removeExpenseSpy}
+      startRemoveExpense={startRemoveExpenseSpy}
       history={historySpy}
       expense={expenses[2]}
     />
@@ -33,7 +33,7 @@ test('Should handle edit expense', () => {
 test('Should handle remove expense', () => {
   wrapper.find('button').simulate('click')
   expect(historySpy.push).toHaveBeenLastCalledWith('/')
-  expect(removeExpenseSpy).toHaveBeenLastCalledWith({
+  expect(startRemoveExpenseSpy).toHaveBeenLastCalledWith({
     id: expenses[2].id
   })
 })

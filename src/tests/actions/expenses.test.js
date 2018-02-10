@@ -5,6 +5,7 @@ import {
   addExpense,
   editExpense,
   removeExpense,
+  startRemoveExpense,
   setExpenses,
   startSetExpenses
 } from '../../actions/expenses'
@@ -128,4 +129,18 @@ test('Should fetch expenses from firebase', (done) => {
     })
   })
   done()
+})
+
+// test Should remove expense from firebase - fetch it and expect null for the value
+test('Should remove expense from firebase', (done) => {
+  const store = createMockStore()
+  const id = expenses[1].id
+  store.dispatch(startRemoveExpense({ id })).then(() => {
+    return database.ref(`expenses/${id}`).once('value')
+      .then((snapshot) => {
+        expect(snapshot.val()).toBeNull()
+        done()
+      })
+    // const val = database.ref(reference).once('value')
+  })
 })
