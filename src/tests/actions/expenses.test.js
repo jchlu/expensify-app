@@ -36,6 +36,11 @@ test('Should remove expense from firebase', (done) => {
   const store = createMockStore()
   const id = expenses[1].id
   store.dispatch(startRemoveExpense({ id })).then(() => {
+    const actions = store.getActions()
+    expect(actions[0]).toEqual({
+      type: 'REMOVE_EXPENSE',
+      id
+    })
     return database.ref(`expenses/${id}`).once('value')
       .then((snapshot) => {
         expect(snapshot.val()).toBeNull()
@@ -64,7 +69,14 @@ test('Should edit expense in firebase', (done) => {
   const store = createMockStore()
   const id = expenses[1].id
   const description = 'This is the new description'
-  store.dispatch(startEditExpense(id, { description })).then(() => {
+  const updates = { description }
+  store.dispatch(startEditExpense(id, updates)).then(() => {
+    const actions = store.getActions()
+    expect(actions[0]).toEqual({
+      type: 'EDIT_EXPENSE',
+      id,
+      updates
+    })
     return database.ref(`expenses/${id}`).once('value')
       .then((snapshot) => {
         expect(snapshot.val().description).toBe(description)
