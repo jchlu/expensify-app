@@ -4,6 +4,7 @@ import {
   startAddExpense,
   addExpense,
   editExpense,
+  startEditExpense,
   removeExpense,
   startRemoveExpense,
   setExpenses,
@@ -30,12 +31,25 @@ test('Should setup removeExpense action object', () => {
   })
 })
 
+// test Should remove expense from firebase - fetch it and expect null for the value
+test('Should remove expense from firebase', (done) => {
+  const store = createMockStore()
+  const id = expenses[1].id
+  store.dispatch(startRemoveExpense({ id })).then(() => {
+    return database.ref(`expenses/${id}`).once('value')
+      .then((snapshot) => {
+        expect(snapshot.val()).toBeNull()
+        done()
+      })
+    // const val = database.ref(reference).once('value')
+  })
+})
+
 test('Should setup editExpense action object', () => {
   const action = editExpense(
     '123abc',
     { note: 'Updated Note Value' }
   )
-
   const expected = {
     type: 'EDIT_EXPENSE',
     id: '123abc',
@@ -44,6 +58,23 @@ test('Should setup editExpense action object', () => {
     }
   }
   expect(action).toEqual(expected)
+})
+
+test('Should edit expense in firebase', (done) => {
+  const store = createMockStore()
+  const id = expenses[1].id
+  const description = 'This is the new description'
+  store.dispatch(startEditExpense(id, { description })).then(() => {
+    return database.ref(`expenses/${id}`).once('value')
+      .then((snapshot) => {
+        expect(snapshot.val()).toEqual({
+          ...expenses[1],
+          description
+        })
+        done()
+      })
+    // const val = database.ref(reference).once('value')
+  })
 })
 
 test('Should setup addExpense action object with passed values', () => {
@@ -129,18 +160,4 @@ test('Should fetch expenses from firebase', (done) => {
     })
   })
   done()
-})
-
-// test Should remove expense from firebase - fetch it and expect null for the value
-test('Should remove expense from firebase', (done) => {
-  const store = createMockStore()
-  const id = expenses[1].id
-  store.dispatch(startRemoveExpense({ id })).then(() => {
-    return database.ref(`expenses/${id}`).once('value')
-      .then((snapshot) => {
-        expect(snapshot.val()).toBeNull()
-        done()
-      })
-    // const val = database.ref(reference).once('value')
-  })
 })
