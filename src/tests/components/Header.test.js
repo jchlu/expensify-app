@@ -1,9 +1,9 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import Header from '../../components/Header'
+import { Header } from '../../components/Header'
 
 test('Should render Header correctly', () => {
-  const wrapper = shallow(<Header />)
+  const wrapper = shallow(<Header startLogout={() => {}}/>)
   /**
    * Examples:
    * expect(wrapper.find('h1').length).toBe(1) // Check for only one h1 element
