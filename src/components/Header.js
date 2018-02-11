@@ -8,7 +8,7 @@ export const Header = (props) => {
     <div className="header">
       <h1 className="header__title">{props.title}</h1>
       <p>
-        |&nbsp;<NavLink className="header__link" activeClassName="header__link--active" to="/" exact={true}>Go Home</NavLink>&nbsp;
+        |&nbsp;<NavLink className="header__link" activeClassName="header__link--active" to="/dashboard">Go Home</NavLink>&nbsp;
           |&nbsp;<NavLink className="header__link" activeClassName="header__link--active" to="/create">Add Expense</NavLink>&nbsp;
           |&nbsp;<NavLink className="header__link" activeClassName="header__link--active" to="/help">Help</NavLink>&nbsp;|
       </p>
