@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { Router, Route, Switch } from 'react-router-dom'
+import createHistory from 'history/createBrowserHistory'
 import AddExpense from '../components/AddExpense'
 import EditExpense from '../components/EditExpense'
 import ExpenseDashboardPage from '../components/ExpenseDashboardPage'
@@ -9,10 +10,12 @@ import HelpPage from '../components/HelpPage'
 import LoginPage from '../components/LoginPage' // default connected export
 import NotFoundPage from '../components/NotFoundPage'
 
+export const history = createHistory()
+
 const AppRouter = () => {
   const title = 'Expensify App'
   return (
-    <BrowserRouter>
+    <Router history={history}>
       <div>
         <Header title={title}/>
         <Switch>
@@ -24,7 +27,7 @@ const AppRouter = () => {
           <Route component={NotFoundPage} />
         </Switch>
       </div>
-    </BrowserRouter>
+    </Router>
   )
 }
 
