@@ -8,7 +8,8 @@ export const addExpense = (expense) => ({
 
 export const startAddExpense = (expenseData = {}) => {
   // Returning a function here only works because of thunk middleware
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid
     const {
       description = '',
       note = '',
@@ -16,7 +17,7 @@ export const startAddExpense = (expenseData = {}) => {
       createdAt = 0
     } = expenseData
     const expense = { description, note, amount, createdAt }
-    return database.ref('expenses').push(expense).then((ref) => {
+    return database.ref(`users/${uid}/expenses`).push(expense).then((ref) => {
       dispatch(addExpense({
         id: ref.key,
         ...expense
@@ -32,8 +33,9 @@ export const removeExpense = ({ id }) => ({
 })
 
 export const startRemoveExpense = ({ id }) => {
-  return (dispatch) => {
-    const reference = `expenses/${id}`
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid
+    const reference = `users/${uid}/expenses/${id}`
     return database.ref(reference).remove().then(() => {
       dispatch(removeExpense({ id }))
     })
@@ -48,8 +50,9 @@ export const editExpense = (id, updates) => ({
 })
 
 export const startEditExpense = (id, updates) => {
-  return (dispatch) => {
-    const reference = `expenses/${id}`
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid
+    const reference = `users/${uid}/expenses/${id}`
     return database.ref(reference).update(updates).then(() => {
       dispatch(editExpense(id, updates))
     })
@@ -63,9 +66,10 @@ export const setExpenses = (expenses) => ({
 })
 
 export const startSetExpenses = () => {
-  return (dispatch) => {
-  // Fetch all expenses data once from firebase
-    return database.ref('expenses')
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid
+    // Fetch all expenses data once from firebase
+    return database.ref(`users/${uid}/expenses`)
       .once('value')
       .then((snapshot) => {
       // Parse the data into an array (as per firebase.js testing)

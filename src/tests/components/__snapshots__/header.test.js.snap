@@ -15,8 +15,7 @@ exports[`Should render Header correctly 1`] = `
       activeClassName="header__link--active"
       ariaCurrent="true"
       className="header__link"
-      exact={true}
-      to="/"
+      to="/dashboard"
     >
       Go Home
     </NavLink>
