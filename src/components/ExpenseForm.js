@@ -106,7 +106,7 @@ constructor(props)  {
             value={this.state.note}
             onChange={this.onNoteChange}
           ></textarea>
-          <button>Add Expense</button>
+          <button>Save Expense</button>
         </form>
         <ErrorModal
         errorMessage={this.state.error}

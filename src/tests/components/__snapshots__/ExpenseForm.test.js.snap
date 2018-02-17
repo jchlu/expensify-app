@@ -108,7 +108,7 @@ exports[`Should render ExpenseForm correctly 1`] = `
       value=""
     />
     <button>
-      Add Expense
+      Save Expense
     </button>
   </form>
   <ErrorModal
@@ -227,7 +227,7 @@ exports[`Should render ExpenseForm with Expense data 1`] = `
       value=""
     />
     <button>
-      Add Expense
+      Save Expense
     </button>
   </form>
   <ErrorModal
@@ -346,7 +346,7 @@ exports[`Should render error for invalid form submission 1`] = `
       value=""
     />
     <button>
-      Add Expense
+      Save Expense
     </button>
   </form>
   <ErrorModal
@@ -465,7 +465,7 @@ exports[`Should render error for invalid form submission 2`] = `
       value=""
     />
     <button>
-      Add Expense
+      Save Expense
     </button>
   </form>
   <ErrorModal
