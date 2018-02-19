@@ -3,11 +3,12 @@ html {
 }
 
 body {
-  color: $off-white;
-  background: $dark-blue;
-  box-sizing: border-box; // Added for 'react-dates' as per README
+  // background: $dark-blue;
+  // box-sizing: border-box; // Added for 'react-dates' as per README
+  color: $dark-grey;
   font-family: Helvetica, Arial, sans-serif;
   font-size: $m-size;
+  line-height: 1.6;
 }
 
 button {
