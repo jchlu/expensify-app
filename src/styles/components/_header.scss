@@ -1,11 +1,23 @@
 .header {
+  background: $dark-blue;
   color: $off-white;
 }
 
 .header__title {
   color: $off-white;
+  text-decoration: none;
+  h1 {
+    margin: 0;
+  }
 }
 
+.header__content {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: $s-size 0;
+}
+/* 
 .header__link {
   color: $off-white;
   text-decoration: none;
@@ -13,4 +25,4 @@
 
 .header__link--active {
   color: white;
-}
+} */
