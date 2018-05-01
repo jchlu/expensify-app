@@ -4,7 +4,12 @@ import ExpenseListItem from './ExpenseListItem'
 import sortedAndFilteredExpenses from '../selectors/expenses'
 import PropTypes from 'prop-types'
 export const ExpenseList = (props) => (
-  <div>
+  <div className="content-container">
+    <div className="list-header">
+      <div className="show-for-mobile">Expenses</div>
+      <div className="show-for-desktop">Expense</div>
+      <div className="show-for-desktop">Amount</div>
+    </div>
     {props.expenses.length === 0
       ? <p>No expenses to display</p>
       : props.expenses.map((expense) => {
